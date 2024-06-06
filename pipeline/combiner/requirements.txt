@@ -3,4 +3,4 @@ alibi
 alibi-detect
 seldon-core
 seaborn
-pytorch
+torch
