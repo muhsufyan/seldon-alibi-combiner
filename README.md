@@ -80,6 +80,8 @@ plt.show()
 
 jalankan semua perintah di Makefile pertama mulai dari base, loanclassifier, outliersdetect, dan combiner
 
+alibi / alibi-detect perlu menginstall Pytorch / Tensorflow >= 2.0 atau Flax agar detector bisa dijalankan
+
 # deploy dengan kubernetes
 
 ## install istio
