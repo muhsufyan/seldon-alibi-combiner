@@ -1,0 +1,48 @@
+apiVersion: machinelearning.seldon.io/v1alpha2
+kind: SeldonDeployment
+metadata:
+  labels:
+    app: seldon
+  name: loanclassifier-combined
+  namespace: istio-system
+spec:
+  annotations:
+    project_name: Iris classification
+  name: loanclassifier-combined
+  predictors:
+  - componentSpecs:
+    - spec:
+        containers:
+        - image: tetewpoj/loanclassifier:0.1
+          name: loanclassifier
+          env:
+          - name: SELDON_LOG_LEVEL
+            value: DEBUG
+        - image: tetewpoj/outliersdetector:0.1
+          name: outliersdetector
+          env:
+          - name: SELDON_LOG_LEVEL
+            value: DEBUG
+        - image: tetewpoj/combiner:0.1
+          name: combiner
+          env:
+          - name: SELDON_LOG_LEVEL
+            value: DEBUG
+    graph:
+      children:
+      - children: []
+        name: loanclassifier
+        type: MODEL
+        endpoint:
+          type: REST
+      - children: []
+        name: outliersdetector
+        type: MODEL
+        endpoint:
+          type: REST
+      endpoint:
+        type: REST
+      name: combiner
+      type: COMBINER
+    name: combiner-graph
+    replicas: 1
