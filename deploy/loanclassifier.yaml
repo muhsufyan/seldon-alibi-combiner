@@ -11,7 +11,7 @@ spec:
   - componentSpecs:
     - spec:
         containers:
-        - image: tetewpoj/loanclassifier:0.1
+        - image: tetewpoj/loanclassifier:latest
           name: loanclassifier
           env:
           - name: SELDON_LOG_LEVEL

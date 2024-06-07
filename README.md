@@ -82,6 +82,8 @@ jalankan semua perintah di Makefile pertama mulai dari base, loanclassifier, out
 
 alibi / alibi-detect perlu menginstall Pytorch / Tensorflow >= 2.0 atau Flax agar detector bisa dijalankan
 
+untuk menginstall pytorch gunakan pip install torch sedangkan untuk tensorflow pada kasus ini saya menggunakan tensorflow==2.13.0
+
 # deploy dengan kubernetes
 
 ## install istio

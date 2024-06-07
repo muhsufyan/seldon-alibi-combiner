@@ -7,27 +7,31 @@ metadata:
   namespace: istio-system
 spec:
   annotations:
-    project_name: Iris classification
+    project_name: seldon combiner
   name: loanclassifier-combined
   predictors:
   - componentSpecs:
     - spec:
         containers:
-        - image: tetewpoj/loanclassifier:0.1
+        - image: tetewpoj/loanclassifier:latest
           name: loanclassifier
           env:
           - name: SELDON_LOG_LEVEL
             value: DEBUG
-        - image: tetewpoj/outliersdetector:0.1
+        - image: tetewpoj/outliersdetector:latest
           name: outliersdetector
           env:
           - name: SELDON_LOG_LEVEL
             value: DEBUG
-        - image: tetewpoj/combiner:0.1
+          - name: NUMBA_CACHE_DIR # for fix error cannot cache function '_normalise_stats': no locator available for file. library alibi-detect
+            value: /tmp/numba_cache
+        - image: tetewpoj/combiner:latest
           name: combiner
           env:
           - name: SELDON_LOG_LEVEL
             value: DEBUG
+          - name: NUMBA_CACHE_DIR # for fix error cannot cache function '_normalise_stats': no locator available for file. library alibi-detect
+            value: /tmp/numba_cache
     graph:
       children:
       - children: []
