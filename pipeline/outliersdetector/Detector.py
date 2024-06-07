@@ -10,13 +10,12 @@ dirname = os.path.dirname(__file__)
 
 class Detector:
     def __init__(self, *args, **kwargs):
-
+        print("run")
+    def predict(self, X, feature_names=[]):
         with open(os.path.join(dirname, "preprocessor.dill"), "rb") as prep_f:
             self.preprocessor = dill.load(prep_f)
         with open(os.path.join(dirname, "model.dill"), "rb") as model_f:
             self.od = dill.load(model_f)
-
-    def predict(self, X, feature_names=[]):
         logging.info("Input: " + str(X))
 
         X_prep = self.preprocessor.transform(X)

@@ -11,11 +11,13 @@ spec:
   - componentSpecs:
     - spec:
         containers:
-        - image: tetewpoj/outliersdetector:0.1
+        - image: tetewpoj/outliersdetector:latest
           name: outliersdetector
           env:
           - name: SELDON_LOG_LEVEL
             value: DEBUG
+          - name: NUMBA_CACHE_DIR # for fix error cannot cache function '_normalise_stats': no locator available for file. library alibi-detect
+            value: /tmp/numba_cache
     graph:
       children: []
       name: outliersdetector

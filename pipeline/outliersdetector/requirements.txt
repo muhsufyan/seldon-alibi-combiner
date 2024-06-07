@@ -3,4 +3,4 @@ alibi
 alibi-detect
 seldon-core
 seaborn
-torch
+tensorflow==2.13.0
